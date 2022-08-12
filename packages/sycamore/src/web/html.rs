@@ -37,7 +37,7 @@ macro_rules! define_elements {
             #[allow(non_snake_case)]
             #[doc = concat!("Create a [`<", stringify!($el), ">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/", stringify!($el), ") element builder.")]
             $(#[$attr])*
-            pub fn $el<'a, G: GenericNode>() -> ElementBuilder<'a, G, impl FnOnce(Scope<'a>) -> G> {
+            pub fn $el<'a, G: GenericNode>() -> ElementBuilder<'a, G> {
                 ElementBuilder::new(move |_| G::element::<$el>())
             }
         )*

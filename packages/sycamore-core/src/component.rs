@@ -93,6 +93,15 @@ pub fn element_like_component_builder<'a, T: Prop + 'a, G: GenericNode>(
 pub struct Children<'a, G: GenericNode> {
     f: Box<dyn FnOnce(BoundedScope<'_, 'a>) -> View<G> + 'a>,
 }
+
+impl<'a, G: GenericNode> Default for Children<'a, G> {
+    fn default() -> Children<'a, G> {
+        Children {
+            f: Box::new(|_| View::default())
+        }
+    }
+}
+
 impl<'a, G: GenericNode> std::fmt::Debug for Children<'a, G> {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         f.debug_struct("Children").finish()
